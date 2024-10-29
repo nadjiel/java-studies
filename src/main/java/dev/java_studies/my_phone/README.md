@@ -8,9 +8,9 @@ classDiagram
     class MyPhone {
     }
 
-    MyPhone --> ReprodutorMusical
-    MyPhone --> AparelhoTelefonico
-    MyPhone --> NavegadorInternet
+    MyPhone --> MusicPlayer
+    MyPhone --> Phone
+    MyPhone --> WebBrowser
     
     class MusicPlayer {
         +play()
