@@ -16,16 +16,16 @@ public class Main {
         BigDecimal saldo;
 
         System.out.print("Por favor, digite o numero da sua agência: ");
-        numero = InputReader.readInt(scanner, "Numero inválido, por favor tente novamente.");
+        numero = InputReader.readInteger(scanner);
 
         System.out.print("Por favor, digite o nome da sua agência: ");
-        agencia = InputReader.readString(scanner, "Agencia inválida, por favor tente novamente.");
+        agencia = InputReader.readString(scanner);
 
         System.out.print("Por favor, digite o seu nome: ");
-        nome = InputReader.readString(scanner, "Nome inválido, por favor tente novamente.");
+        nome = InputReader.readString(scanner);
 
         System.out.print("Por favor, digite o seu saldo: ");
-        saldo = InputReader.readBigDecimal(scanner, "Saldo inválido, por favor tente novamente.");
+        saldo = InputReader.readBigDecimal(scanner);
 
         System.out.printf("""
         Olá %s, obrigado por criar uma conta em nosso banco,\

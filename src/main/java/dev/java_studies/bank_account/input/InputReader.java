@@ -1,58 +1,55 @@
 package dev.java_studies.bank_account.input;
 
 import java.math.BigDecimal;
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class InputReader {
 
-    public static int readInt(Scanner scanner, String errorMessage) {
-        int result;
-
+    public static String validateInteger(String s) {
         try {
-            result = scanner.nextInt();
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return "Numero inválido, por favor digite um número inteiro.";
+        }
 
-            scanner.nextLine();
-        } catch(InputMismatchException e) {
-            scanner.nextLine();
+        return "";
+    }
 
+    public static String validateBigDecimal(String s) {
+        try {
+            new BigDecimal(s);
+        } catch(NumberFormatException e) {
+            return "Numero inválido, por favor digite um valor monetário válido.";
+        }
+
+        return "";
+    }
+
+    public static String readAndValidate(Scanner scanner, Function<String, String> validator) {
+        String result = scanner.nextLine();
+
+        String errorMessage = validator.apply(result);
+
+        if(!errorMessage.isEmpty()) {
             System.out.println(errorMessage);
 
-            result = readInt(scanner, errorMessage);
+            result = readAndValidate(scanner, validator);
         }
 
         return result;
     }
 
-    public static String readString(Scanner scanner, String errorMessage) {
-        String result;
-
-        try {
-            result = scanner.nextLine();
-        } catch(NoSuchElementException e) {
-            System.out.println(errorMessage);
-
-            result = readString(scanner, errorMessage);
-        }
-
-        return result;
+    public static int readInteger(Scanner scanner) {
+        return Integer.parseInt(readAndValidate(scanner, InputReader::validateInteger));
     }
 
-    public static BigDecimal readBigDecimal(Scanner scanner, String errorMessage) {
-        BigDecimal result;
+    public static String readString(Scanner scanner) {
+        return scanner.nextLine();
+    }
 
-        try {
-            result = scanner.nextBigDecimal();
-        } catch(InputMismatchException e) {
-            scanner.nextLine();
-
-            System.out.println(errorMessage);
-
-            result = readBigDecimal(scanner, errorMessage);
-        }
-
-        return result;
+    public static BigDecimal readBigDecimal(Scanner scanner) {
+        return new BigDecimal(readAndValidate(scanner, InputReader::validateBigDecimal));
     }
 
 }
