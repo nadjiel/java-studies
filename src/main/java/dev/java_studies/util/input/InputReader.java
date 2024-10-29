@@ -1,4 +1,4 @@
-package dev.java_studies.bank_account.input;
+package dev.java_studies.util.input;
 
 import java.math.BigDecimal;
 import java.util.Scanner;

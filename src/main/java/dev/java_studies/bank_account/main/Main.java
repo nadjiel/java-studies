@@ -3,7 +3,7 @@ package dev.java_studies.bank_account.main;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-import dev.java_studies.bank_account.input.InputReader;
+import dev.java_studies.util.input.InputReader;
 
 public class Main {
 
