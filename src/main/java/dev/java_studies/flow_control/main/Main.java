@@ -7,22 +7,24 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void contar(int from, int to) throws InvalidParametersException {
+    public static void count(int times) {
+        for(int i = 1; i <= times; i++) {
+            System.out.println(i);
+        }
+    }
+
+    public static void count(int from, int to) throws InvalidParametersException {
         if(from > to) {
             throw new InvalidParametersException("O primeiro número deve ser menor do que o segundo!");
         }
 
-        System.out.println(from);
-
-        if(from < to) {
-            contar(from + 1, to);
-        }
+        count(to + 1 - from);
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("De qual número você quer começar a contagem ?");
+        System.out.print("De qual número você quer começar a contagem? ");
         int start = InputReader.readInteger(scanner);
 
         System.out.print("Até qual número você quer contar? ");
@@ -31,9 +33,9 @@ public class Main {
         System.out.print("\nCONTAGEM:\n");
 
         try {
-            contar(start, end);
+            count(start, end);
         } catch(InvalidParametersException e) {
-            System.out.println("Infelizmente, não é possível contar já que o primeiro número foi maior do que o segundo");
+            System.out.println("Não é possível contar já que o primeiro número é maior do que o segundo");
         }
 
         scanner.close();
